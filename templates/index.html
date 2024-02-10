@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Score Predictor</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cricket Score Predictor</h1>
+    <form action="/predict" method="post">
+        <label for="batting_team">Select batting team:</label>
+        <select name="batting_team">
+            {% for team in teams %}
+                <option value="{{ team }}">{{ team }}</option>
+            {% endfor %}
+        </select>
+        <label for="bowling_team">Select bowling team:</label>
+        <select name="bowling_team">
+            {% for team in teams %}
+                <option value="{{ team }}">{{ team }}</option>
+            {% endfor %}
+        </select>
+        <label for="city">Select city:</label>
+        <select name="city">
+            {% for city in cities %}
+                <option value="{{ city }}">{{ city }}</option>
+            {% endfor %}
+        </select>
+        <label for="current_score">Current Score:</label>
+        <input type="number" name="current_score" required>
+        <label for="overs">Overs done (works for over > 5):</label>
+        <input type="number" name="overs" required>
+        <label for="wickets">Wickets out:</label>
+        <input type="number" name="wickets" required>
+        <label for="last_five">Runs scored in last 5 overs:</label>
+        <input type="number" name="last_five" required>
+        <button type="submit">Predict Score</button>
+    </form>
+</body>
+</html>
